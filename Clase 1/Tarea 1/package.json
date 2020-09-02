@@ -1,0 +1,15 @@
+{
+  "name": "tarea-1",
+  "version": "1.0.0",
+  "description": "primera tarea de node",
+  "main": "index.js",
+  "scripts": {
+    "saludar": "echo \"Hola, este es mi primer script!",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Loohan",
+  "license": "ISC",
+  "dependencies": {
+    "pretty-ms": "^7.0.0"
+  }
+}
