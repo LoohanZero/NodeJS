@@ -20,7 +20,12 @@ fs.readFile("./assets/Algo1.txt", "utf-8", (error, data) => {
 });
 
 fs.readFile("./assets/Algo2.txt", "utf-8", (error, data) => {
-  fs.writeFile("./assets/Algo4.txt", data.toUpperCase(), "utf-8", (error, data) => {});
+  fs.writeFile(
+    "./assets/Algo4.txt",
+    data.toUpperCase(),
+    "utf-8",
+    (error, data) => {}
+  );
 });
 
 fs.readFile("./assets/Algo1.txt", "utf-8", (error, data) => {
@@ -102,11 +107,11 @@ server.listen(3030);
 const prettyMilliseconds = require("pretty-ms");
 
 const getFechaActual = () => {
-  return console.log(new Date());
+  return new Date();
 };
 
 const diferenciaHoraria = (otraFecha) => {
-  return console.log(otraFecha - new Date());
+  return otraFecha - new Date();
 };
 
 getFechaActual();
@@ -116,3 +121,6 @@ const diferencia = prettyMilliseconds(new Date(2021, 04, 14) - new Date(), {
   verbose: true,
 });
 console.log(diferencia);
+
+console.log(getFechaActual());
+console.log(diferenciaHoraria());
