@@ -1,14 +1,15 @@
 const express = require("express");
-
 const morgan = require("morgan");
-const app = express();
+const cors = require("cors");
 const userRouter = require("./routes/userRoutes");
 const gatitoRouter = require("./routes/gatitosRoutes");
 const shelterRouter = require("./routes/shelterRoutes");
 
+const app = express();
+
 // Middleware
 app.use(express.json());
-
+app.use(cors());
 app.use(morgan("dev"));
 
 // app.get("/", (req, res) => {
@@ -25,6 +26,7 @@ app.use(morgan("dev"));
 // app.post("/hola", (req, res) => {
 //     res.send("me hiciste un post en la ruta hola");
 //   });
+
 const getApi = (req, res) => {
   res.json({
     Estado: "Bienvenido a mi API",
