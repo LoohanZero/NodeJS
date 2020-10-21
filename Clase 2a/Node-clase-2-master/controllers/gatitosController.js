@@ -1,9 +1,26 @@
+const { query } = require("express");
 const fs = require("fs");
 const Gatito = require("../models/gatitos");
 
 const getGatitos = async (req, res) => {
   try {
-    const gatitos = await Gatito.find();
+    const queryObj = { ...req.query };
+    const camposExcluidos = ["page"];
+
+    camposExcluidos.forEach((el) => delete queryObj[el]);
+    // console.log(queryObj);
+
+    // PAGINADO
+    let query = await Gatito.find(queryObj);
+
+    const page = Number(req.query.page) || 1;
+    const limit = req.query.limit * 1 || 2;
+    const skip = (page - 1) * limit;
+
+    query = query.limit(limit).skip(skip);
+    // const gatitos = await Gatito.find(queryObj);
+
+    const gatitos = await query;
 
     res.json({
       status: "Success",
@@ -12,7 +29,7 @@ const getGatitos = async (req, res) => {
   } catch (err) {
     res.status(400).json({
       status: "Fail",
-      data: "Gatitos no encontrados",
+      data: err.message,
     });
   }
   // fs.readFile(`${__dirname}/../assets/cats.json`, (err, data) => {
